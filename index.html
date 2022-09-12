@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <title>Game</title>
+  </head>
+  <body>
+    <div class="game">
+      <img src="sonic.gif" class="Sonic" />
+      <img src="cano.png" class="cano" />
+
+      <img src="nuvem.png" id="N1" class="nuvem" />
+      <img src="nuvem.png" id="N2" class="nuvem2" />
+      <img src="nuvem.png" id="N3" class="nuvem3" />
+
+      <img src="sol.gif" class="sol" id="sol" />
+
+      <h1 id="pontos">0 Pontos</h1>
+      <h1 id="timer">00</h1>
+
+      <div class="gameOver" id="defeat">
+        <div class="container">
+          <h1 class="textDefeat">Game Over</h1>
+          <h1 id="Feitos">00 Pontos</h1>
+          <button id="GameReset">Reiniciar</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="input" id="darkmode">
+      <div class="ball" id="ball"></div>
+    </div>
+  </body>
+</html>
