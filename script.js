@@ -63,6 +63,10 @@ let timeWin = setInterval(() => {
   cano.style.animation = "none";
   cano.style.display = "none";
 
+  sol.src = "sol.gif";
+  document.body.classList.remove("dark");
+  let game = document.querySelector(".game").classList.remove("game-dark");
+
   sonic.classList.add("win")
 
   setTimeout(()=>{
