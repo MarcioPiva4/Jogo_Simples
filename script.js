@@ -63,6 +63,13 @@ let timeWin = setInterval(() => {
   cano.style.animation = "none";
   cano.style.display = "none";
 
+  sonic.classList.add("win")
+
+  setTimeout(()=>{
+    sonic.classList.remove("win")
+    sonic.style.display = "none"
+  }, 5000)
+
   nuvem1.style.display = "none";
   nuvem2.style.display = "none";
   nuvem3.style.display = "none";
