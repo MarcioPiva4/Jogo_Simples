@@ -2,17 +2,12 @@ let sonic = document.querySelector(".Sonic");
 let cano = document.querySelector(".cano");
 let placar = document.getElementById("pontos");
 let timer = document.getElementById("timer");
-let telaGameOver = document.getElementById("defeat");
 let btnReset = document.getElementById("GameReset");
+let btnResetWin = document.getElementById("GameResetWin");
 let sol = document.getElementById("sol");
 
-let ball = document.getElementById("ball");
-
-ball.addEventListener("click", (e) => {
-  e.target.classList.toggle("ball-move");
-  document.body.classList.toggle("dark");
-  let game = document.querySelector(".game").classList.toggle("game-dark");
-});
+let telaGameOver = document.getElementById("defeat");
+let telaGameWin = document.getElementById("win");
 
 let placarPontos = 0;
 
@@ -44,6 +39,13 @@ let TempoPassar = setInterval(() => {
   } else {
     timer.textContent = `${seg}`;
   }
+
+  //modo noturno
+  if (seg >= 30) {
+    sol.src = "lua.png";
+    document.body.classList.add("dark");
+    let game = document.querySelector(".game").classList.add("game-dark");
+  }
 }, 1000);
 
 //Contar Pontos
@@ -51,7 +53,32 @@ let TempoPassar = setInterval(() => {
 let tempoPlacar = setInterval(() => {
   placarPontos++;
   placar.textContent = `${placarPontos} Pontos`;
-}, 300);
+}, 100);
+
+// Game WIN
+
+let timeWin = setInterval(() => {
+  telaGameWin.style.display = "block";
+  telaGameOver.style.display = "none";
+  cano.style.animation = "none";
+  cano.style.display = "none";
+
+  nuvem1.style.display = "none";
+  nuvem2.style.display = "none";
+  nuvem3.style.display = "none";
+  placar.style.display = "none";
+  timer.style.display = "none ";
+  sol.style.display = "none";
+
+  btnResetWin.addEventListener("click", () => {
+    location.reload();
+  });
+
+  clearInterval(jogando);
+  clearInterval(tempoPlacar);
+  clearInterval(TempoPassar);
+  clearInterval(timeWin);
+}, 60000);
 
 //Game over
 
@@ -59,21 +86,20 @@ let jogando = setInterval(() => {
   let canoPosition = cano.offsetLeft;
   let sonicPosition = +window.getComputedStyle(sonic).bottom.replace("px", "");
 
-  if (canoPosition <= 70 && canoPosition > 0 && sonicPosition < 35) {
+  if (canoPosition <= 35 && canoPosition > 0 && sonicPosition < 35) {
     cano.style.animation = "none";
-    sonic.classList.add("defeat");
-    sonic.classList.remove("pular");
     nuvem1.style.display = "none";
     nuvem2.style.display = "none";
     nuvem3.style.display = "none";
     placar.style.display = "none";
     timer.style.display = "none ";
+    sol.style.display = "none";
     setTimeout(() => {
       sonic.style.display = "none";
     }, 1000);
 
     telaGameOver.style.display = "block";
-    sol.style.display = "none";
+    telaGameWin.style.display = "none";
     document.getElementById(
       "Feitos"
     ).innerHTML = `${placarPontos} Pontos em ${seg} Segundos`;
@@ -85,5 +111,11 @@ let jogando = setInterval(() => {
     clearInterval(jogando);
     clearInterval(tempoPlacar);
     clearInterval(TempoPassar);
+    clearInterval(timeWin);
+
+    sonic.src = "sonicDefeat.gif";
+    sonic.style.width = "100px";
+    sonic.style.animation = "none";
+    sonic.style.marginBottom = "39px";
   }
-}, 10);
+}, 1);
