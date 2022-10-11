@@ -31,6 +31,7 @@ function sonicPular() {
 }
 
 document.addEventListener("keydown", sonicPular);
+document.addEventListener("touchstart", sonicPular);
 
 //
 //Timer
@@ -89,7 +90,7 @@ let tempoPlacar = setInterval(() => {
   let moedaPosition = moedaPontos.offsetLeft
   let sonicPosition = +window.getComputedStyle(sonic).bottom.replace("px", "");
 
-  if(moedaPosition <= 45 && moedaPosition > 0 && sonicPosition < 35){
+  if(moedaPosition <= 35 && moedaPosition > 0 && sonicPosition < 35){
     placarPontos ++ ;
     placar.textContent = `${placarPontos} Pontos`;
     moedaPontos.style.display = "none"
@@ -97,7 +98,7 @@ let tempoPlacar = setInterval(() => {
     moedaPontos.style.display = "block"
   }
 
-}, 100);
+}, 1);
 
 //
 // Game WIN
